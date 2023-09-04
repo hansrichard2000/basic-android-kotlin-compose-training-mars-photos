@@ -4,6 +4,7 @@ import com.example.marsphotos.rules.TestDispatcherRule
 import com.example.marsphotos.ui.screens.MarsUiState
 import com.example.marsphotos.ui.screens.MarsViewModel
 import junit.framework.TestCase
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -19,9 +20,8 @@ class MarsViewModelTest {
             val marsViewModel = MarsViewModel(
                 marsPhotosRepository = FakeNetworkMarsPhotosRepository()
             )
-            TestCase.assertEquals(
-                MarsUiState.Success("Success: ${FakeDataSource.photosList.size} Mars " +
-                        "photos retrieved"),
+            assertEquals(
+                MarsUiState.Success(FakeDataSource.photosList),
                 marsViewModel.marsUiState
             )
         }
